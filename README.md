@@ -1,0 +1,1 @@
+#### Wherein I attempt to pass along what I have learned about coding thus far, compiled from so many notes I have pulled together
