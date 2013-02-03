@@ -1,4 +1,4 @@
-# [Learning python/django](http://www.chrislkeller.com/pages/learning-pythondjango)
+# Learning django
 
 In a quest to learn how to use python within the django framework, the most difficult thing was the development environment, and getting to the point where I could <del>play</del> learn, practice and experiment. Here are some steps that I took to get to that point.
 
