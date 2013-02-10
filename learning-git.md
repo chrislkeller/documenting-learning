@@ -20,7 +20,7 @@ The first is your Working Directory which holds the actual files. The second one
 
 	git clone </path/to/my/project/>
 
-**Create repo from command line
+**Create repo from command line**
 
     curl -u 'USER:PASS' https://api.github.com/user/repos -d '{"name":"NAME OF REPO"}'
     git remote add origin git@github.com:USER/bootstrap-template.git
