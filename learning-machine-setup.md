@@ -39,9 +39,13 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 ### After the clean install
 
+**See how far [SoloWizard](http://www.solowizard.com/) will get you**
+
 **[Install Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)**
 
-* I'm going to give this a try as opposed to installing the whole XCode sweet which is huge and I don't do anything with. I will miss the iOS simulators though.
+* I'm going to give [this a try](http://www.bloggure.info/work/installing-homebrew-without-xcode.html) as opposed to installing the whole XCode sweet which is huge and I don't do anything with. I will miss the iOS simulators though.
+
+        sudo /Developer/Library/uninstall-devtools
 
 **Install [Homebrew](http://mxcl.github.com/homebrew/)**
 
@@ -82,6 +86,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         source /usr/local/bin/virtualenvwrapper.sh
 
 **Install rubies**
+
         curl https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
         rvm get head
         rvm pkg install readline # need it to work correctly with utf-8 characters in irb/pry
@@ -187,7 +192,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * Add bash.mode, django.mode, markdown.mode and WordPress.mode to Coda2.
 * Add [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) for Coda2.
 
-#### Misc OS X Preferences Commands
+### Misc OS X Preferences Commands
 
         *Fix font smoothing
         defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
