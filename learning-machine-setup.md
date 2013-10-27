@@ -4,7 +4,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 ### Preparing for clean install
 
-**Backup local Postgres and MySql databases**
+**Backup local [Postgres](http://postgresguide.com/utilities/backup-restore.html) and MySql databases**
 
 **Backup ssh keys**
 
@@ -103,89 +103,200 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 **Re-install the following native applications**
 
+* Ableton Live 8.app
+* Adapter.app
 * [Adium](http://adium.im/)
+* Adobe CS Applications
+* Adobe Help Viewer 1.0.app
 * Adobe Illustrator CS5.1
 * Adobe Photoshop CS5.1
+* Adobe Reader.app
+* AirParrot.app
 * Alfred 2.app
-* AppCleaner
-* Briquette
-* Byword
-* calibre
+* All2MP3.app
+* App Store.app
+* AppCleaner.app
+* Arduino.app
+* Audacity
+* Audio Hijack Pro.app
+* AudioCapture.app
+* Automator.app
+* Belkin
+* BitTorrent.app
+* Book Proofer.app
+* Booknote Importer.app
+* Briquette.app
+* Byword.app
+* Calculator.app
+* Calendar Plus.app
+* Calendar.app
+* calibre.app
+* Call of Duty.app
 * Campfire.app
 * Captur
+* Captur.app
 * Carbon Copy Cloner.app
-* CCleaner
-* CheatSheet
+* CCleaner.app
+* CheatSheet.app
 * Checkbook HD.app
+* Chess.app
+* Chromecast.app
 * Coda 2
+* Coda 2.app
 * Color Oracle.app
-* CSVEdit
-* DashExpander
-* DavMail
+* Color Oracle.app
+* Colorblender.app
+* Contacts.app
+* CSVEdit.app
+* Dashboard.app
+* DashExpander.app
+* DavMail.app
+* Dictionary.app
 * Draft.app
-* Dropbox
+* Dropbox.app
+* DVD Player.app
 * Evernote.app
+* FaceTime.app
 * Feedly.app
+* Firefox Beta.app
 * Firefox.app
 * Fluid.app
+* Font Book.app
+* Game Center.app
+* GamePad Companion.app
 * GarageBand.app
 * GCal.app
-* GitHub
+* GIMP.app
+* GitHub.app
 * GitHubWeb.app
 * GitX
 * Gmail.app
-* Google Chrome
-* Google Drive
-* Google Refine
+* GoFlex Home Desktop Applications
+* Google Calendar.app
+* Google Chrome.app
+* Google Drive.app
+* Google Refine.app
 * GoToMeeting (1082).app
+* GRASS-6.4.app
 * Growl
+* Growl.app
+* HipChat.app
 * Hiss
+* Hiss.app
+* iAd Producer.app
+* iAntivirus.app
+* iBooks Author.app
+* iBoostUp.app
+* iDVD.app
+* Image Capture.app
+* iMeme.app
+* iMovie.app
 * import.io.app
+* Induction.app
+* Instapaper.app
 * Instashare.app
+* iPhoto.app
 * iSnap.app
+* iTemplates.app
 * iTerm.app
+* iTunes Producer.app
+* iTunes.app
 * iTunification.app
+* iVI.app
+* JewelryBox.app
 * join.me.app
 * Keynote
 * Keynote.app
+* Keynote.app
 * Kindle
-* MacDropAny
+* Kindle Previewer.app
+* Kindle.app
+* Launchpad.app
+* MacDropAny.app
+* Mactracker.app
+* MacX DVD Ripper Mac Free Edition.app
+* MagicPrefs.app
+* Mail.app
 * MAMP
 * MAMP PRO
-* MenuBarFilter
+* Marked.app
+* Media Converter.app
+* MenuBarFilter.app
+* Messages.app
+* Microsoft Messenger.app
 * Microsoft Office 2008
 * Microsoft Office 2011
-* MindNode Lite
-* Mou
-* OpenOffice.app
+* Microsoft Silverlight
+* MindNode Lite.app
+* Mint QuickView.app
+* Mission Control.app
+* Mixxx.app
+* Mou.app
+* MPEG Streamclip.app
+* Notes.app
 * [Opera](http://www.opera.com/browser/next/)
-* Patterns
+* OpenOffice.app
+* Parallels Desktop.app
+* Patterns.app
+* PdaNetMac.app
 * pgAdmin3.app
-* Pocket
-* Postbox
+* Photo Booth.app
+* PivotalBooster.app
+* Pocket.app
+* Postbox.app
 * Postgres.app
+* Preview.app
 * PyRegEx.app
+* Python 2.7
 * QGIS.app
-* Read Later
+* QuickHub.app
+* QuickTime Player.app
+* R.app
+* R64.app
+* Rdio.app
+* Read Later.app
+* Reeder.app
 * RegExr.app
+* Reminders.app
+* Remote Desktop Connection.app
+* Safari.app
+* Sauce.app
 * Sequel Pro.app
-* Sigil
-* SketchBookExpress
+* Sequel Pro.app
+* Shortcat.app
+* Sigil.app
+* SketchBookExpress.app
 * Skitch.app
 * Skype.app
+* Sophos Remove.app
+* Soundflower
+* SourceTree.app
+* Sparrow.app
 * Spotify.app
 * SQLite Database Browser 2.0 b1.app
+* SqliteQuery.app
+* Stickies.app
 * StuffIt Expander
+* StuffIt Expander.app
 * Sublime Text 2.app
+* System Preferences.app
 * Tabula.app
-* TileMill
-* TweetDeck
+* TextEdit.app
+* TextMate.app
+* TileMill.app
+* Time Machine.app
+* TinyUmbrella.app
+* TweetDeck.app
 * Twitter.app
+* Utilities
 * Vagrant
 * VirtualBox.app
+* VirtualDJ Home.app
 * VLC.app
 * VMware Fusion.app
 * Wondershare PDF to Excel.app
+* Wunderlist.app
+* Xcode.app
 * XtraFinder.app
 * [DavMail](http://davmail.sourceforge.net/macosxsetup.html) for email client to access web mail.
 * [Ubuntu Mono font library](http://font.ubuntu.com/#charset-mono-regular).
