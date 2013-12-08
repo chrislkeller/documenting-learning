@@ -6,6 +6,15 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 **Backup local [Postgres](http://postgresguide.com/utilities/backup-restore.html) and MySql databases**
 
+        # list databases
+        psql -l
+
+        # dump a database
+        pg_dump -Ft database_name_here > database.tar # compressed tarball
+
+        # create and restore a database
+        pg_restore -Ft -C database.tar # restore tarball
+
 **Backup ssh keys**
 
 **Create a backup of the current development environment**
