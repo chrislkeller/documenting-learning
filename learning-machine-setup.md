@@ -99,7 +99,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         curl https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
         rvm get head
         rvm pkg install readline # need it to work correctly with utf-8 characters in irb/pry
-        rvm install 1.9.3
+        rvm install 1.9.3 --with-gcc=clang
         gem install capistrano
 
 **Install Node**
