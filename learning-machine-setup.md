@@ -113,7 +113,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
 **Re-install the following native applications**
 
 * Ableton Live 8.app
-* Adapter.app
+<del>* Adapter.app</del>
 * [Adium](http://adium.im/)
 * Adobe CS Applications
 * Adobe Help Viewer 1.0.app
@@ -150,9 +150,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * Checkbook HD.app
 * Chess.app
 * Chromecast.app
-* Coda 2
 * Coda 2.app
-* Color Oracle.app
 * Color Oracle.app
 * Colorblender.app
 * Contacts.app
@@ -177,8 +175,8 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * GCal.app
 * GIMP.app
 * GitHub.app
-* GitHubWeb.app
-* GitX
+<del>* GitHubWeb.app</del>
+<del>* GitX</del>
 * Gmail.app
 * GoFlex Home Desktop Applications
 * Google Calendar.app
@@ -187,10 +185,8 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * Google Refine.app
 * GoToMeeting (1082).app
 * GRASS-6.4.app
-* Growl
 * Growl.app
 * HipChat.app
-* Hiss
 * Hiss.app
 * iAd Producer.app
 * iAntivirus.app
