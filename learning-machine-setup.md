@@ -99,7 +99,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         curl https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
         rvm get head
         rvm pkg install readline # need it to work correctly with utf-8 characters in irb/pry
-        rvm install 1.9.3
+        rvm install 1.9.3 --with-gcc=clang
         gem install capistrano
 
 **Install Node**
@@ -134,7 +134,7 @@ These links helped with the MySQL install
 **Re-install the following native applications**
 
 * Ableton Live 8.app
-* Adapter.app
+<del>* Adapter.app</del>
 * [Adium](http://adium.im/)
 * Adobe CS Applications
 * Adobe Help Viewer 1.0.app
@@ -171,9 +171,7 @@ These links helped with the MySQL install
 * Checkbook HD.app
 * Chess.app
 * Chromecast.app
-* Coda 2
 * Coda 2.app
-* Color Oracle.app
 * Color Oracle.app
 * Colorblender.app
 * Contacts.app
@@ -198,8 +196,8 @@ These links helped with the MySQL install
 * GCal.app
 * GIMP.app
 * GitHub.app
-* GitHubWeb.app
-* GitX
+<del>* GitHubWeb.app</del>
+<del>* GitX</del>
 * Gmail.app
 * GoFlex Home Desktop Applications
 * Google Calendar.app
@@ -208,10 +206,8 @@ These links helped with the MySQL install
 * Google Refine.app
 * GoToMeeting (1082).app
 * GRASS-6.4.app
-* Growl
 * Growl.app
 * HipChat.app
-* Hiss
 * Hiss.app
 * iAd Producer.app
 * iAntivirus.app
