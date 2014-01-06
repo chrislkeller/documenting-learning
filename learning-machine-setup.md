@@ -108,6 +108,27 @@ This guide is informed by too many tutorials and Google searches to list. But th
         curl https://npmjs.org/install.sh | sh
         export NODE_PATH=/usr/local/lib/node_modules
 
+**Install MySQL via homebrew**
+
+        brew remove mysql
+        brew cleanup
+        launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+        rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+        sudo rm -rf /usr/local/var/mysql
+        brew install mysql
+        mysql.server start
+        mysql_secure_installation
+        mysql -u root -p
+        SHOW DATABASES;
+        CREATE DATABASE <name of database>;
+        USE <name of database>;
+
+These links helped with the MySQL install
+
+* http://net.tutsplus.com/tutorials/python-tutorials/intro-to-flask-signing-in-and-out/
+* http://pythonhosted.org/Flask-SQLAlchemy/config.html
+* http://flask-mysql.readthedocs.org/en/latest/
+
 **[Generate ssh keys for GitHub](https://help.github.com/articles/generating-ssh-keys)**
 
 **Re-install the following native applications**
