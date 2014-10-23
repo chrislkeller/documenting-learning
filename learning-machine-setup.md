@@ -329,6 +329,10 @@ These links helped with the MySQL install
 * Add bash.mode, django.mode, markdown.mode and WordPress.mode to Coda2.
 * Add [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) for Coda2.
 
+**Install IE vms**
+
+```curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="8 9 10 11" | INSTALL_PATH="/Volumes/one_tb_hd/virtualbox_vms" bash```
+
 ### Misc OS X Preferences Commands
 
         *Fix font smoothing
