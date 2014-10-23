@@ -333,6 +333,11 @@ These links helped with the MySQL install
 
 ```curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="8 9 10 11" | INSTALL_PATH="/Volumes/one_tb_hd/virtualbox_vms" bash```
 
+* You may remove all files except *.vmdk after installation and they will be re-downloaded if ievms is run again in the future:
+
+```$ find ~/.ievms -type f ! -name "*.vmdk" -exec rm {} \;```
+
+
 ### Misc OS X Preferences Commands
 
         *Fix font smoothing
