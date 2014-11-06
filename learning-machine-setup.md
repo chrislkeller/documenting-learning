@@ -50,6 +50,9 @@ This guide is informed by too many tutorials and Google searches to list. But th
         # mysql
         bak-mysql
 
+* Packages
+   * [GISLook & GISMeta](http://cartography.oregonstate.edu/GISLook.html)  
+
 * List the native applications that are installed.
     * ```cd /Applications``` then ```ls -a -1```
         * Campfire: *Fluid App*
