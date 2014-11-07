@@ -1,6 +1,6 @@
 # Setting up a Mac OS development machine after clean install
 
-This guide is informed by too many tutorials and Google searches to list. But the guides I have found to be invaluable are NPR apps' [How to Setup Your Mac to Develop News Applications Like We Do](http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html), Noah Veltman's [Ubuntu setup script](https://gist.github.com/veltman/7492ad89ed4c0370c41e) and Brian Boyer's [Lion dev environment notes](https://gist.github.com/brianboyer/1696819)
+This guide is informed by too many tutorials and Google searches to list. But the guides I have found to be invaluable are NPR apps' [How to Setup Your Mac to Develop News Applications Like We Do](http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html), Noah Veltman's [Ubuntu setup script](https://gist.github.com/veltman/7492ad89ed4c0370c41e), [Setting up Sublime Text for Python development](http://dbader.org/blog/setting-up-sublime-text-for-python-development) and Brian Boyer's [Lion dev environment notes](https://gist.github.com/brianboyer/1696819)
 
 ## Preparing for clean install
 
@@ -49,6 +49,9 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
         # mysql
         bak-mysql
+
+* Packages
+   * [GISLook & GISMeta](http://cartography.oregonstate.edu/GISLook.html)  
 
 * List the native applications that are installed.
     * ```cd /Applications``` then ```ls -a -1```
