@@ -86,6 +86,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         * pgAdmin3: *Must Have*
         * QGIS: *Must Have*
         * R: *Must Have*
+        * R Studio: *Must Have*
         * R64: *Must Have*
         * RegExr: *Must Have*
         * Sequel Pro: *Must Have*
