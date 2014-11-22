@@ -7,15 +7,15 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * Move .dotfiles and .dotdirectories to external hard drive
     * Use the python function in the script:
 
-        @staticmethod
-        def bak_all_dot_files(directory):
-            """ backup all of my dotfiles in my home directory """
-            utilities = UtilityFunctions()
-            dot_files = glob("%s.*" % (directory))
-            target_directory = BAK_DIRECTORY + "bak_dotfiles/"
-            utilities.check_for_path_and_build(target_directory)
-            for dot in dot_files:
-                utilities.rename_and_move(dot, target_directory)
+            @staticmethod
+            def bak_all_dot_files(directory):
+                """ backup all of my dotfiles in my home directory """
+                utilities = UtilityFunctions()
+                dot_files = glob("%s.*" % (directory))
+                target_directory = BAK_DIRECTORY + "bak_dotfiles/"
+                utilities.check_for_path_and_build(target_directory)
+                for dot in dot_files:
+                    utilities.rename_and_move(dot, target_directory)
 
     * Bash would look something like this:
 
@@ -25,21 +25,21 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * Check the status of homebrew and export list installed packages
     * Use the python function in the script
 
-        @staticmethod
-        def bak_homebrew_packages(directory):
-            """ list installed homebrew packages and send to text file """
-            utilities = UtilityFunctions()
-            target_directory = "%shomebrew_packages/" % (BAK_DIRECTORY)
-            utilities.check_for_path_and_build(target_directory)
-            with lcd(directory):
-                try:
-                    #local("brew update")
-                    #local("brew cleanup")
-                    #local("brew prune")
-                    #local("brew doctor")
-                    local("brew list -1 > %s/homebrew_packages/homebrew_packages.txt" % (BAK_DIRECTORY))
-                except Exception, exception:
-                    logger.error(exception)
+            @staticmethod
+            def bak_homebrew_packages(directory):
+                """ list installed homebrew packages and send to text file """
+                utilities = UtilityFunctions()
+                target_directory = "%shomebrew_packages/" % (BAK_DIRECTORY)
+                utilities.check_for_path_and_build(target_directory)
+                with lcd(directory):
+                    try:
+                        #local("brew update")
+                        #local("brew cleanup")
+                        #local("brew prune")
+                        #local("brew doctor")
+                        local("brew list -1 > %s/homebrew_packages/homebrew_packages.txt" % (BAK_DIRECTORY))
+                    except Exception, exception:
+                        logger.error(exception)
 
     * Bash would look something like this:
         * ```brew update```
@@ -51,25 +51,25 @@ This guide is informed by too many tutorials and Google searches to list. But th
 * Export ```requirements.txt``` files from virtual environments using shell script
     * Use the python function in the script:
 
-        @staticmethod
-        def bak_virtualenv_requirements(directory):
-            """ create requirements files for each virtualenv """
-            utilities = UtilityFunctions()
-            target_directory = "%svirtualenv_requirements/" % (BAK_DIRECTORY)
-            utilities.check_for_path_and_build(target_directory)
-            try:
-                for virtualenv in os.listdir("%s.virtualenvs" % (directory)):
-                    path_to_virtualenv = "%s.virtualenvs/%s" % (directory, virtualenv)
-                    is_directory = os.path.isdir(path_to_virtualenv)
-                    if is_directory == True:
-                        with prefix("WORKON_HOME=$HOME/.virtualenvs"):
-                            with prefix("source /usr/local/share/python/virtualenvwrapper.sh"):
-                                with prefix("workon %s" % (virtualenv)):
-                                    local("pip freeze > %s%s.txt" % (target_directory, virtualenv))
-                    else:
-                        pass
-            except Exception, exception:
-                logger.error(exception)
+            @staticmethod
+            def bak_virtualenv_requirements(directory):
+                """ create requirements files for each virtualenv """
+                utilities = UtilityFunctions()
+                target_directory = "%svirtualenv_requirements/" % (BAK_DIRECTORY)
+                utilities.check_for_path_and_build(target_directory)
+                try:
+                    for virtualenv in os.listdir("%s.virtualenvs" % (directory)):
+                        path_to_virtualenv = "%s.virtualenvs/%s" % (directory, virtualenv)
+                        is_directory = os.path.isdir(path_to_virtualenv)
+                        if is_directory == True:
+                            with prefix("WORKON_HOME=$HOME/.virtualenvs"):
+                                with prefix("source /usr/local/share/python/virtualenvwrapper.sh"):
+                                    with prefix("workon %s" % (virtualenv)):
+                                        local("pip freeze > %s%s.txt" % (target_directory, virtualenv))
+                        else:
+                            pass
+                except Exception, exception:
+                    logger.error(exception)
 
     * Bash would look something like this:
 
@@ -126,19 +126,19 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
     * mysql python script
 
-        @staticmethod
-        def bak_mysql_databases(directory):
-            """ backup all of my mysql databases to my external hd """
-            utilities = UtilityFunctions()
-            target_directory = "%smysql_bak/" % (BAK_DIRECTORY)
-            utilities.check_for_path_and_build(target_directory)
-            file_datetime = time.strftime("%Y_%m_%d-%H%M%S_")
-            query_statement = "SHOW DATABASES"
-            set_of_databases = utilities.create_connection(query_statement)
-            list_of_databases = list(set_of_databases)
-            for database in list_of_databases:
-                db = database["Database"]
-                dumpcmd = "mysqldump -u " + DB_USER + " -p" + DB_USER_PASSWORD + " " + db + " > " + target_directory + file_datetime + db + ".sql"
+            @staticmethod
+            def bak_mysql_databases(directory):
+                """ backup all of my mysql databases to my external hd """
+                utilities = UtilityFunctions()
+                target_directory = "%smysql_bak/" % (BAK_DIRECTORY)
+                utilities.check_for_path_and_build(target_directory)
+                file_datetime = time.strftime("%Y_%m_%d-%H%M%S_")
+                query_statement = "SHOW DATABASES"
+                set_of_databases = utilities.create_connection(query_statement)
+                list_of_databases = list(set_of_databases)
+                for database in list_of_databases:
+                    db = database["Database"]
+                    dumpcmd = "mysqldump -u " + DB_USER + " -p" + DB_USER_PASSWORD + " " + db + " > " + target_directory + file_datetime + db + ".sql"
 
     * mysql bash script
 
@@ -374,13 +374,18 @@ This guide is informed by too many tutorials and Google searches to list. But th
  * [SoloWizard](http://www.solowizard.com/)
  * [Laptop](https://github.com/thoughtbot/laptop/blob/master/README.md)
 
-* Download [AppCleaner](http://www.freemacsoft.net/appcleaner/) and get rid of some Mac OX cruft.
- * Garage Band
- * iMovie
- * iPhoto
- * Photo Booth
- * Chess
- * Stickies
+* Download [AppCleaner](http://www.freemacsoft.net/appcleaner/) and get rid of some cruft.
+    * Or delete from the command line
+
+        cd /Applications/
+        sudo rm -rf Mail.app/
+        sudo rm -rf FaceTime.app/
+        sudo rm -rf Stickies.app/
+        sudo rm -rf Chess.app/
+        sudo rm -rf Photo\ Booth.app
+        sudo rm -rf IMovie.app
+        sudo rm -rf IPhoto.app
+        sudo rm -rf Garage\ Band.app
 
 * Skip XCode and go for the developer tools
     * [Download Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
@@ -392,9 +397,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         * Open the Command Line Tools for XCode dmg and install
 
 * Install [Homebrew](http://mxcl.github.com/homebrew/)
-
-        ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-
+    * ```ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
     * ```brew update```
     * ```brew doctor```
     * Install packages from ```/Volumes/one_tb_hd/machine_setup/homebrew_packages.txt```
@@ -403,9 +406,13 @@ This guide is informed by too many tutorials and Google searches to list. But th
     * ```brew doctor```
     * Add Homebrew to $PATH
         * ```export PATH=/usr/local/bin:$PATH```
+* Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
     * ```brew tap phinze/cask```
+    * ```cd /usr/local/Library/Taps/phinze/homebrew-cask```
+    * ```git remote set-url origin git@github.com:phinze/homebrew-cask.git```
     * ```brew install brew-cask```
-    * Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
+    * ```brew doctor```
+    * ```brew cask install iterm2```
 
 * Install MySQL via homebrew
 
@@ -416,7 +423,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         sudo rm -rf /usr/local/var/mysql
         brew install mysql
 
-    * Link MySql data directory to external HD
+* Link MySql data directory to external HD
 
         mysql -u root -p
         SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
@@ -424,37 +431,35 @@ This guide is informed by too many tutorials and Google searches to list. But th
         ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
         mysql.server start
 
-    * Getting mysql up and running
+* Getting mysql up and running
 
-            mysql.server start
-            mysql_secure_installation
-            mysql -u root -p
-            SHOW DATABASES;
-            SET default_storage_engine=MYISAM;
+        mysql.server start
+        mysql_secure_installation
+        mysql -u root -p
+        SET default_storage_engine=MYISAM;
+        SHOW DATABASES;
 
+* These links helped with the MySQL install
+    * http://net.tutsplus.com/tutorials/python-tutorials/intro-to-flask-signing-in-and-out/
+    * http://pythonhosted.org/Flask-SQLAlchemy/config.html
+    * http://flask-mysql.readthedocs.org/en/latest/
 
-    * These links helped with the MySQL install
-        * http://net.tutsplus.com/tutorials/python-tutorials/intro-to-flask-signing-in-and-out/
-        * http://pythonhosted.org/Flask-SQLAlchemy/config.html
-        * http://flask-mysql.readthedocs.org/en/latest/
-
-* Configure $PATH for Python
+* install homebrew python
 
         cd /System/Library/Frameworks/Python.framework/Versions
         sudo rm Current
         ln -s /usr/local/Cellar/python/2.7.2/Frameworks/Python.framework/Versions/Current
-
-        easy_install pip
+        brew install python
+        brew doctor
+        which python
+        which pip
         pip install --upgrade distribute
         pip install virtualenv
         pip install virtualenvwrapper
-
         python --version
-
         source /usr/local/bin/virtualenvwrapper.sh
 
-        ######### set paths for ruby & python #########
-        export PATH="/usr/local/share/python:/usr/local/bin/python:/usr/local/bin:/Users/ckeller/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+* Configure $PATH for Python
 
         ######### virtualenvwrapper settings #########
         export WORKON_HOME=$HOME/.virtualenvs
@@ -464,14 +469,14 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 * Postgres and PostGIS
 
-	pip install numpy
-	brew install postgresql
-	alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-	alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-	initdb /usr/local/var/postgres/ -E utf-8
-	pgup
-	brew install gdal --complete --with-postgresql
-	brew install postgis
+        pip install numpy
+        brew install postgresql
+        alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+        alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+        initdb /usr/local/var/postgres/ -E utf-8
+        pgup
+        brew install gdal --complete --with-postgresql
+        brew install postgis
 
 	To create a spatially-enabled database, see the documentation:
 	http://postgis.net/docs/manual-2.1/postgis_installation.html#create_new_db_extensions
@@ -493,7 +498,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 * Install rubies
 
-        curl -sSL https://get.rvm.io | bash -s stable --ruby
+        curl -ssl https://get.rvm.io | bash -s stable --ruby
         rvm get head
         rvm pkg install readline # need it to work correctly with utf-8 characters in irb/pry
         rvm install 1.9.3 --with-gcc=clang
@@ -511,6 +516,11 @@ This guide is informed by too many tutorials and Google searches to list. But th
         rm -rf Installed\ Packages
         ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
         ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+
+* install qgis
+
+    * ```brew install gdal --complete --with-postgresql```
+    * ```brew install qgis-26 --with-grass --with-postgis```
 
 * [Generate ssh keys for GitHub](https://help.github.com/articles/generating-ssh-keys)
 
@@ -589,3 +599,242 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
     * Disable ping dropdowns
     ```defaults write com.apple.iTunes hide-ping-dropdown true```
+
+**Attempt at a bash script**
+
+        #!/bin/bash
+
+        # remove mac apps I don't use
+        #cd /Applications/
+        #sudo rm -rf Mail.app/
+        #sudo rm -rf FaceTime.app/
+        #sudo rm -rf Stickies.app/
+        #sudo rm -rf Chess.app/
+        #sudo rm -rf Photo\ Booth.app
+        #sudo rm -rf IMovie.app
+        #sudo rm -rf IPhoto.app
+
+        # function to install homebrew
+        #ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+        # function to create move bash profile
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bash_profile /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bashrc_local /Users/ckeller
+        #cd ~
+        #ls -a
+        #source ~/.bash_profile
+        #brew doctor
+
+        # function to update homebrew
+        #brew update
+
+        # function to clean homebrew
+        #brew cleanup
+
+        # function to prune homebrew
+        #brew prune
+
+        # function to add homebrew cask
+        #brew tap phinze/cask
+        #cd /usr/local/Library/Taps/phinze/homebrew-cask
+        #git remote set-url origin git@github.com:phinze/homebrew-cask.git
+
+        # function to install homebrew cask
+        #brew install brew-cask
+
+        # function to check homebrew install
+        #brew doctor
+        #brew cask install iterm2
+
+        # function to install homebrew mysql
+        #brew remove mysql
+        #brew cleanup
+        #launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+        #rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+        #sudo rm -rf /usr/local/var/mysql
+        #brew install mysql
+
+        # function to link MySql data directory to external HD
+        # if error, kill processes
+        # ps aux | grep mysql
+        # kill -9 <process number>
+        #mysql.server start
+        #mysql -u root -p
+        #SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
+        #mysql.server stop
+        #rm -rf /Volumes/Macintosh\ HD/usr/local/var/mysql
+        #ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
+
+        # Getting mysql up and running
+        #mysql.server start
+        #mysql_secure_installation
+        #mysql -u root -p
+        #SHOW DATABASES;
+
+        # install homebrew python
+        #cd /System/Library/Frameworks/Python.framework/Versions
+        #sudo rm Current
+        #ln -s /usr/local/Cellar/python/2.7.2/Frameworks/Python.framework/Versions/Current
+        #brew install python
+        #brew doctor
+        #which python
+        #which pip
+        #pip install distribute
+        #pip install virtualenv
+        #pip install virtualenvwrapper
+        #python --version
+        #source /usr/local/bin/virtualenvwrapper.sh
+
+        # install homebrew packages
+        #brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree
+        #brew cask install xquartz
+        #brew tap homebrew/dupes
+        #brew install ack
+        #brew install apple-gcc42
+        #brew install atk
+        #brew install autoconf
+        #brew install automake
+        #brew install bash-completion
+        #brew install bison
+        #brew install cairo
+        #brew install cloog
+        #brew install cloog-ppl015
+        #brew install cmake
+        #brew install coda-cli
+        #brew install curl
+        #brew install doxygen
+        #brew install ec2-api-tools
+        #brew install expat
+        #brew install fftw
+        #brew install fontconfig
+        #brew install freetype
+        #brew install freexl
+        #brew install fswatch
+        #brew install gcc
+        #brew install geos
+        #brew install gettext
+        #brew install gfortran
+        #brew install giflib
+        #brew install gist
+        #brew install git
+        #brew install glib
+        #brew install gmp
+        #brew install gmp4
+        #brew install gobject-introspection
+        #brew install gpp
+        #brew install gsl
+        #brew install gtk+
+        #brew install harfbuzz
+        #brew install heroku-toolbelt
+        #rew install howdoi
+        #rew install icu4c
+        #rew install imagemagick
+        #rew install isl
+        #rew install jasper
+        #brew install jbig2dec
+        #brew install jpeg
+        #brew install json-c
+        #rew install libevent
+        #rew install libffi
+        #brew install libgeotiff
+        #rew install libgpg-error
+        #brew install libksba
+        #brew install liblwgeom
+        #brew install libmpc
+        #brew install libmpc08
+        #brew install libpng
+        #brew install libspatialite
+        #brew install libtiff
+        #brew install libtool
+        #brew install libxml2
+        #brew install libyaml
+        #brew install little-cms2
+        #brew install lzlib
+        #brew install mdbtools
+        #brew install memcached
+        #brew install mongodb
+        #brew install mpfr
+        #brew install mpfr2
+        #brew install mupdf
+        #brew install node
+        #brew install opencv
+        #brew install openjpeg
+        #brew install openssl
+        #brew install ossp-uuid
+        #brew install pango
+        #brew install pcre
+        #brew install phantomjs
+        #brew install pixman
+        #brew install pkg-config
+        #brew install ppl011
+        #brew install proj
+        #brew install psqlodbc
+        #brew install py2cairo
+        #brew install pygobject
+        #brew install pygtk
+        #brew install pyqt
+        #brew install qt
+        #brew install qwt
+        #brew install readline
+        #brew install redis
+        #brew install sip
+        #brew install spark
+        #brew install spatialindex
+        #brew install sqlite
+        #brew install unixodbc
+        #brew install wget
+        #brew install wxmac
+        #brew install xz
+        #brew install yuicompressor
+        #brew install zeromq
+
+        # install other apps
+        #curl -L https://gist.githubusercontent.com/zenorocha/7159780/raw/9b9413ff1306d78be6447f4beddcf90e7e8b2b8a/softwares.sh | sh
+        #brew cask install appcleaner
+        #brew cask install bartender
+        #brew cask install adium
+        #brew cask install cleanmymac
+        #brew cask install calibre
+        #brew cask install audacity
+        #brew cask install ccleaner
+        #brew cask install colorpicker
+        #brew cask install colorpicker-hex
+        #brew cask install cheatsheet
+        #brew cask install firefox
+        #brew cask install dropbox
+        #brew cask install google-drive
+        #brew cask install onepassword
+        #brew cask install ngrok
+        #brew cask install openoffice
+        #brew cask install mou
+        #brew cask install opera
+        #brew cask install pgadmin3
+        #brew cask install media-converter
+
+        # configure sublime text 3
+        #ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+        #n -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages
+        #n -s /Volumes/one_tb_hd/sublime-text-3/Packages ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+
+        #cd ~/Library/Application\ Support/Sublime\ Text\ 3
+        #rm -rf Packages
+        #rm -rf Installed\ Packages
+        #ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
+        #ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+
+        # move ssh folder
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.ssh /Users/ckeller
+
+        # move gitconfig and gitignore files
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitconfig /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitignore /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.sunlight.key /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+
+        # install qgis
+        #brew install gdal --complete --with-postgresql
+        #brew install qgis-26 --with-grass --with-postgis
+
+        # move bak plugins
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.qgis2/python/plugins /Users/ckeller/.qgis2/python/plugins
