@@ -1,5 +1,18 @@
 ### Steps to get boundary service up and running
 
+    initdb /usr/local/var/postgres/ -E utf-8
+    createdb test_gis
+    psql test_gis -c "CREATE EXTENSION postgis;"
+    psql test_gis
+    select postgis_lib_version();
+
+
+
+
+
+
+
+
 #### Creating the template spatial database
 
 	createdb -E UTF8 template_postgis
@@ -8,7 +21,7 @@
 	psql -d template_postgis -f ~/Desktop/postgis.sql
 	psql -d template_postgis -f ~/Desktop/postgis_comments.sql
 	psql -d template_postgis -f ~/Desktop/spatial_ref_sys.sql
-	
+
 #### Enabling users to alter spatial tables.
 	psql -d template_postgis -c "GRANT ALL ON geometry_columns TO PUBLIC;"
 	psql -d template_postgis -c "GRANT ALL ON geography_columns TO PUBLIC;"
@@ -35,7 +48,7 @@
 	pip install django-extensions
 
 **To Reset the database**
-	
+
 	python manage.py reset_db --router=default
 
 #### Postgres 9.2 and PostGIS 2 and Django 1.4 aren't happy with one another
