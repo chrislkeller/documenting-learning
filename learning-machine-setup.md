@@ -370,49 +370,112 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 ### After the clean install
 
-* Some setup script options
- * [SoloWizard](http://www.solowizard.com/)
- * [Laptop](https://github.com/thoughtbot/laptop/blob/master/README.md)
+* Some setup script options if you wish.
+    * [SoloWizard](http://www.solowizard.com/)
+    * [Laptop](https://github.com/thoughtbot/laptop/blob/master/README.md)
 
-* Download [AppCleaner](http://www.freemacsoft.net/appcleaner/) and get rid of some cruft.
+* Otherwise download [AppCleaner](http://www.freemacsoft.net/appcleaner/) and get rid of some cruft if you want.
     * Or delete from the command line
 
-        cd /Applications/
-        sudo rm -rf Mail.app/
-        sudo rm -rf FaceTime.app/
-        sudo rm -rf Stickies.app/
-        sudo rm -rf Chess.app/
-        sudo rm -rf Photo\ Booth.app
-        sudo rm -rf IMovie.app
-        sudo rm -rf IPhoto.app
-        sudo rm -rf Garage\ Band.app
+            cd /Applications/
+            sudo rm -rf Mail.app/
+            sudo rm -rf FaceTime.app/
+            sudo rm -rf Stickies.app/
+            sudo rm -rf Chess.app/
+            sudo rm -rf Photo\ Booth.app
+            sudo rm -rf IMovie.app
+            sudo rm -rf IPhoto.app
+            sudo rm -rf Garage\ Band.app
 
-* Skip XCode and go for the developer tools
-    * [Download Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
-    * I'm going to give [this a try](http://www.bloggure.info/work/installing-homebrew-without-xcode.html) as opposed to installing the whole XCode sweet which is huge and I don't do anything with. I will miss the iOS simulators though.
-        * Uninstall any existing development tools
+* Uninstall any existing development tools
 
-                sudo /Developer/Library/uninstall-devtools
+        sudo /Developer/Library/uninstall-devtools
 
-        * Open the Command Line Tools for XCode dmg and install
+* Skip XCode and go for the [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
+    * More on this path  [here](http://www.bloggure.info/work/installing-homebrew-without-xcode.html). It's much faster than installing the whole XCode suite, which is huge and I don't do anything with it. I will miss the iOS simulators though.
+    * Open the Command Line Tools for XCode dmg and install
 
 * Install [Homebrew](http://mxcl.github.com/homebrew/)
-    * ```ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
-    * ```brew update```
-    * ```brew doctor```
-    * Install packages from ```/Volumes/one_tb_hd/machine_setup/homebrew_packages.txt```
-    * ```brew cleanup```
-    * ```brew prune```
-    * ```brew doctor```
-    * Add Homebrew to $PATH
-        * ```export PATH=/usr/local/bin:$PATH```
+
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew update
+        brew doctor
+        brew cleanup
+        brew prune
+        brew doctor
+
+* Add Homebrew to $PATH
+
+        export PATH="/usr/local/bin:$PATH"
+
 * Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
-    * ```brew tap phinze/cask```
-    * ```cd /usr/local/Library/Taps/phinze/homebrew-cask```
-    * ```git remote set-url origin git@github.com:phinze/homebrew-cask.git```
-    * ```brew install brew-cask```
-    * ```brew doctor```
-    * ```brew cask install iterm2```
+
+        brew tap phinze/cask
+        cd /usr/local/Library/Taps/phinze/homebrew-cask
+        git remote set-url origin git@github.com:phinze/homebrew-cask.git
+        brew install brew-cask
+        brew doctor
+        brew cask install iterm2
+
+* Iinstall sublime text 3
+
+* Configure Sublime Text 3 subl and symlink settings and packages to external hard drive
+
+        cd ~/Library/Application\ Support/Sublime\ Text\ 3
+        rm -rf Packages
+        rm -rf Installed\ Packages
+        ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
+        ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+        ln -sv "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+
+* Move my ```.bash_profile``` and ```.bash_local files```
+
+        cp -R /Volumes/one_tb_hd/machine_setup/personal_machine_bak/bak_dotfiles/.bash_profile /Users/ckeller
+        cp -R /Volumes/one_tb_hd/machine_setup/personal_machine_bak/bak_dotfiles/.bashrc_local /Users/ckeller
+        cd ~
+        ls -a
+        source ~/.bash_profile
+        brew doctor
+        slime ~ .
+
+* install homebrew python
+
+        cd /System/Library/Frameworks/Python.framework/Versions
+        sudo rm Current
+        brew install python
+        brew doctor
+        which python
+        which pip
+        pip install --upgrade setuptools
+        pip install --upgrade distribute
+        pip install virtualenv
+        pip install virtualenvwrapper
+        python --version
+        source /usr/local/bin/virtualenvwrapper.sh
+        sudo ln -s /usr/local/Cellar/python/2.7.8_2 /System/Library/Frameworks/Python.framework/Versions/Current
+
+* Configure $PATH variables for python, virtualenv, sqlite and sublime text
+
+        # base path and such
+        export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+
+        # sublime text
+        export PATH="/usr/local/bin/subl:$PATH"
+
+        # sqlite
+        export PATH="/usr/bin/sqlite3:$PATH"
+
+        # all my shell scripts
+        export PATH="/Volumes/one_tb_hd/_programming/3scripts-dotfiles/shell-scripts:$PATH"
+
+        # homebrew path
+        export PATH="/usr/local/bin:$PATH"
+
+        # virtualenvwrapper settings
+        export WORKON_HOME=$HOME/.virtualenvs
+        export PIP_VIRTUALENV_BASE=$WORKON_HOME
+        export PIP_RESPECT_VIRTUALENV=true
+        source /usr/local/bin/virtualenvwrapper.sh
 
 * Install MySQL via homebrew
 
@@ -422,117 +485,127 @@ This guide is informed by too many tutorials and Google searches to list. But th
         rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
         sudo rm -rf /usr/local/var/mysql
         brew install mysql
-
-* Link MySql data directory to external HD
-
-        mysql -u root -p
-        SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
-        mysql.server stop
-        ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
-        mysql.server start
+        ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 
 * Getting mysql up and running
 
         mysql.server start
         mysql_secure_installation
         mysql -u root -p
-        SET default_storage_engine=MYISAM;
         SHOW DATABASES;
+        SET default_storage_engine=MYISAM;
 
-* These links helped with the MySQL install
-    * http://net.tutsplus.com/tutorials/python-tutorials/intro-to-flask-signing-in-and-out/
-    * http://pythonhosted.org/Flask-SQLAlchemy/config.html
-    * http://flask-mysql.readthedocs.org/en/latest/
+* Link MySql data directory to external HD
+    * These links helped with the MySQL install
+        * http://net.tutsplus.com/tutorials/python-tutorials/intro-to-flask-signing-in-and-out/
+        * http://pythonhosted.org/Flask-SQLAlchemy/config.html
+        * http://flask-mysql.readthedocs.org/en/latest/
 
-* install homebrew python
+    * if an error is returned, kill the processes
 
-        cd /System/Library/Frameworks/Python.framework/Versions
-        sudo rm Current
-        ln -s /usr/local/Cellar/python/2.7.2/Frameworks/Python.framework/Versions/Current
-        brew install python
-        brew doctor
-        which python
-        which pip
-        pip install --upgrade distribute
-        pip install virtualenv
-        pip install virtualenvwrapper
-        python --version
-        source /usr/local/bin/virtualenvwrapper.sh
+            ps aux | grep mysql
+            kill -9 <process number>
 
-* Configure $PATH for Python
+    * else
+            mysql -u root -p
+            SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
+            mysql.server stop
+            sudo rm -rf /usr/local/var/mysql
+            ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
+            mysql.server start
+            mysql -u root -p
+            SHOW DATABASES;
 
-        ######### virtualenvwrapper settings #########
-        export WORKON_HOME=$HOME/.virtualenvs
-        export PIP_VIRTUALENV_BASE=$WORKON_HOME
-        export PIP_RESPECT_VIRTUALENV=true
-        source /usr/local/bin/virtualenvwrapper.sh
+* Install Quartz
+    * Download is: https://xquartz.macosforge.org
+    * Else
 
-* Postgres and PostGIS
+            brew cask install xquartz
 
-        pip install numpy
-        brew install postgresql
-        alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-        alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-        initdb /usr/local/var/postgres/ -E utf-8
-        pgup
-        brew install gdal --complete --with-postgresql
-        brew install postgis
+* Install Postgres and PostGIS
+    * These links helped with the Postgres install
+        * [To create a spatially-enabled database](http://postgis.net/docs/manual-2.1/postgis_installation.html#create_new_db_extensions)
+        * [Users of 1.5 and below will need to go the hard-upgrade path, see here](http://postgis.net/docs/manual-2.1/postgis_installation.html#upgrading)
+        * PostGIS SQL scripts installed to ```/usr/local/share/postgis```
+        * PostGIS plugin libraries installed to ```/usr/local/opt/postgresql/lib```
+        * PostGIS extension modules installed to ```/usr/local/opt/postgresql/share/postgresql/extension```
 
-	To create a spatially-enabled database, see the documentation:
-	http://postgis.net/docs/manual-2.1/postgis_installation.html#create_new_db_extensions
+                pip install numpy
+                brew install postgresql
+                initdb /usr/local/var/postgres/ -E utf-8
+                ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+                alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+                alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+                pgup
+                brew install gdal --complete --with-postgresql
+                brew install postgis
+                brew install grass
 
-	If you are currently using PostGIS 2.0+, you can go the soft upgrade path:
-	ALTER EXTENSION postgis UPDATE TO "2.1.4";
-
-	Users of 1.5 and below will need to go the hard-upgrade path, see here:
-	http://postgis.net/docs/manual-2.1/postgis_installation.html#upgrading
-
-	PostGIS SQL scripts installed to:
-	/usr/local/share/postgis
-
-	PostGIS plugin libraries installed to:
-	/usr/local/opt/postgresql/lib
-
-	PostGIS extension modules installed to:
-	/usr/local/opt/postgresql/share/postgresql/extension
-
-* Install rubies
-
-        curl -ssl https://get.rvm.io | bash -s stable --ruby
-        rvm get head
-        rvm pkg install readline # need it to work correctly with utf-8 characters in irb/pry
-        rvm install 1.9.3 --with-gcc=clang
-        gem install capistrano
+* install qgis
+        brew tap osgeo/osgeo4mac
+        brew install qgis-26 --with-grass --with-postgis
 
 * Install Node
 
         brew install node
         export NODE_PATH=/usr/local/lib/node_modules
 
-* Symlink Sublime Text 3 settings and packages to external hard drive
+* Install rubies
 
-        cd ~/Library/Application\ Support/Sublime\ Text\ 3
-        rm -rf Packages
-        rm -rf Installed\ Packages
-        ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
-        ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+        \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
-* install qgis
+        # add rvm to path for scripting
+        export PATH="$HOME/.rvm/bin:$PATH"
 
-    * ```brew install gdal --complete --with-postgresql```
-    * ```brew install qgis-26 --with-grass --with-postgis```
+        # load rvm into a shell session *as a function*
+        [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-* [Generate ssh keys for GitHub](https://help.github.com/articles/generating-ssh-keys)
+        rvm get head
+        rvm pkg install readline # need it to work correctly with utf-8 characters in irb/pry
+        rvm install 1.9.3 --with-gcc=clang
+        gem install capistrano
+
+
+* Install hombrew packages from ```/Volumes/one_tb_hd/machine_setup/homebrew_packages.txt```
+
+        brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree
+        brew tap homebrew/dupes
+        brew install ack bash-completion coda-cli curl ec2-api-tools git gist heroku-toolbelt imagemagick mdbtools memcached mongodb phantomjs redis spark
+
+        To have launchd start memcached at login:
+            ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+        Then to load memcached now:
+            launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+        Or, if you don't want/need launchctl, you can just run:
+            /usr/local/opt/memcached/bin/memcached
+
+        To have launchd start mongodb at login:
+            ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+        Then to load mongodb now:
+            launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+        Or, if you don't want/need launchctl, you can just run:
+            mongod --config /usr/local/etc/mongod.conf
+
+        To have launchd start redis at login:
+            ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+        Then to load redis now:
+            launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+        Or, if you don't want/need launchctl, you can just run:
+            redis-server /usr/local/etc/redis.conf
 
 * Re-install native applications
+    * Reinstall the following using cask
 
-* Add bash.mode, django.mode, markdown.mode and WordPress.mode to Coda2.
+            brew cask install color-oracle ccleaner appcleaner fluid google-chrome vlc tabula sqlite-database-browser skype sequel-pro pgadmin3 namechanger hiss adium arduino adobe-reader airparrot audacity chromecast opera firefox google-refine google-drive r tilemill microsoft-office virtualbox vagrant dropbox calibre colorpicker colorpicker-hex ngrok openoffice mou media-converter sigil rstudio sparrow spotify evernote cyberduck adapter audio-hijack-pro
 
-* Add [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) for Coda2.
+        * Will need to download the others
+
+    * User script to install native applicatons
+
 
 * Install IE vms
 
-    ```curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="8 9 10 11" INSTALL_PATH="/Volumes/one_tb_hd/virtualbox_vms/ie_vms" bash```
+        ```curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="8 9 10 11" INSTALL_PATH="/Volumes/one_tb_hd/virtualbox_vms/ie_vms" bash```
 
     * You may remove all files except *.vmdk after installation and they will be re-downloaded if ievms is run again in the future:
 
@@ -542,299 +615,306 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
     * Access host localhost by going to [http://10.0.2.2:8880](http://10.0.2.2:8880) on the guest
 
-* Misc OS X Preferences Commands
+* Misc
+    * Add bash.mode, django.mode, markdown.mode and WordPress.mode to Coda2.
+    * Add [tomorrow-theme](https://github.com/chriskempson/tomorrow-theme) for Coda2.
+    * [Generate ssh keys for GitHub](https://help.github.com/articles/generating-ssh-keys)
 
-    * Fix font smoothing
-    ```defaults -currentHost write -globalDomain AppleFontSmoothing -int 0```
+    * Misc OS X Preferences Commands
 
-    * Disable window animations
-    ```defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false```
+        * Fix font smoothing
+        ```defaults -currentHost write -globalDomain AppleFontSmoothing -int 0```
 
-    * Enable repeat on keydown
-    ```defaults write -g ApplePressAndHoldEnabled -bool false```
+        * Disable window animations
+        ```defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false```
 
-    * Disable webkit homepage
-    ```defaults write org.webkit.nightly.WebKit StartPageDisabled -bool true```
+        * Enable repeat on keydown
+        ```defaults write -g ApplePressAndHoldEnabled -bool false```
 
-    * Use current directory as default search scope in Finder
-    ```defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"```
+        * Disable webkit homepage
+        ```defaults write org.webkit.nightly.WebKit StartPageDisabled -bool true```
 
-    * Show Path bar in Finder
-    ```defaults write com.apple.finder ShowPathbar -bool true```
+        * Use current directory as default search scope in Finder
+        ```defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"```
 
-    * Show Status bar in Finder
-    ```defaults write com.apple.finder ShowStatusBar -bool true```
+        * Show Path bar in Finder
+        ```defaults write com.apple.finder ShowPathbar -bool true```
 
-    * Show indicator lights for open applications in the Dock
-    ```defaults write com.apple.dock show-process-indicators -bool true```
+        * Show Status bar in Finder
+        ```defaults write com.apple.finder ShowStatusBar -bool true```
 
-    * Enable AirDrop over Ethernet and on unsupported Macs running Lion
-    ```defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true```
+        * Show indicator lights for open applications in the Dock
+        ```defaults write com.apple.dock show-process-indicators -bool true```
 
-    * Set a blazingly fast keyboard repeat rate
-    ```defaults write NSGlobalDomain KeyRepeat -int 0.02```
+        * Enable AirDrop over Ethernet and on unsupported Macs running Lion
+        ```defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true```
 
-    * Set a shorter Delay until key repeat
-    ```defaults write NSGlobalDomain InitialKeyRepeat -int 12```
+        * Set a blazingly fast keyboard repeat rate
+        ```defaults write NSGlobalDomain KeyRepeat -int 0.02```
 
-    * Disable disk image verification
-    ```defaults write com.apple.frameworks.diskimages skip-verify -bool true &&```
-    ```defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true &&```
-    ```defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true```
+        * Set a shorter Delay until key repeat
+        ```defaults write NSGlobalDomain InitialKeyRepeat -int 12```
 
-    * Disable Safari’s thumbnail cache for History and Top Sites
-    ```defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2```
+        * Disable disk image verification
+        ```defaults write com.apple.frameworks.diskimages skip-verify -bool true &&```
+        ```defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true &&```
+        ```defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true```
 
-    * Enable Safari’s debug menu
-    ```defaults write com.apple.Safari IncludeInternalDebugMenu -bool true```
+        * Disable Safari’s thumbnail cache for History and Top Sites
+        ```defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2```
 
-    * Disable the Ping sidebar in iTunes
-    ```defaults write com.apple.iTunes disablePingSidebar -bool true```
+        * Enable Safari’s debug menu
+        ```defaults write com.apple.Safari IncludeInternalDebugMenu -bool true```
 
-    * Add a context menu item for showing the Web Inspector in web views
-    ```defaults write NSGlobalDomain WebKitDeveloperExtras -bool true```
+        * Disable the Ping sidebar in iTunes
+        ```defaults write com.apple.iTunes disablePingSidebar -bool true```
 
-    * Show the ~/Library folder
-    ```chflags nohidden ~/Library```
+        * Add a context menu item for showing the Web Inspector in web views
+        ```defaults write NSGlobalDomain WebKitDeveloperExtras -bool true```
 
-    * Disable ping dropdowns
-    ```defaults write com.apple.iTunes hide-ping-dropdown true```
+        * Show the ~/Library folder
+        ```chflags nohidden ~/Library```
+
+        * Disable ping dropdowns
+        ```defaults write com.apple.iTunes hide-ping-dropdown true```
+
+----
 
 **Attempt at a bash script**
 
-        #!/bin/bash
+#!/bin/bash
 
-        # remove mac apps I don't use
-        #cd /Applications/
-        #sudo rm -rf Mail.app/
-        #sudo rm -rf FaceTime.app/
-        #sudo rm -rf Stickies.app/
-        #sudo rm -rf Chess.app/
-        #sudo rm -rf Photo\ Booth.app
-        #sudo rm -rf IMovie.app
-        #sudo rm -rf IPhoto.app
+# remove mac apps I don't use
+cd /Applications/
+sudo rm -rf Mail.app/
+sudo rm -rf FaceTime.app/
+sudo rm -rf Stickies.app/
+sudo rm -rf Chess.app/
+sudo rm -rf Photo\ Booth.app
+sudo rm -rf IMovie.app
+sudo rm -rf IPhoto.app
+sudo rm -rf Garage\ Band.app
 
-        # function to install homebrew
-        #ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Install [Homebrew](http://mxcl.github.com/homebrew/)
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update
+brew doctor
+brew cleanup
+brew prune
+brew doctor
 
-        # function to create move bash profile
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bash_profile /Users/ckeller
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bashrc_local /Users/ckeller
-        #cd ~
-        #ls -a
-        #source ~/.bash_profile
-        #brew doctor
+# Add Homebrew to $PATH
+#export PATH="/usr/local/bin:$PATH"
 
-        # function to update homebrew
-        #brew update
+# Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
+brew update
+brew cleanup
+brew prune
+brew tap phinze/cask
+cd /usr/local/Library/Taps/phinze/homebrew-cask
+git remote set-url origin git@github.com:phinze/homebrew-cask.git
+brew install brew-cask
+brew doctor
+brew cask install iterm2
 
-        # function to clean homebrew
-        #brew cleanup
+# install sublime text 3
 
-        # function to prune homebrew
-        #brew prune
+# Configure Sublime Text 3 subl and symlink settings and packages to external hard drive
+cd ~/Library/Application\ Support/Sublime\ Text\ 3
+rm -rf Packages
+rm -rf Installed\ Packages
+ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
+ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+ln -sv "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 
-        # function to add homebrew cask
-        #brew tap phinze/cask
-        #cd /usr/local/Library/Taps/phinze/homebrew-cask
-        #git remote set-url origin git@github.com:phinze/homebrew-cask.git
+# function to create move bash profile
+cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bash_profile /Users/ckeller
+cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bashrc_local /Users/ckeller
+cd ~
+ls -a
+source ~/.bash_profile
 
-        # function to install homebrew cask
-        #brew install brew-cask
+# install homebrew python
+cd /System/Library/Frameworks/Python.framework/Versions
+sudo rm Current
+brew install python
+brew doctor
+which python
+which pip
+pip install --upgrade setuptools
+pip install --upgrade distribute
+pip install virtualenv
+pip install virtualenvwrapper
+python --version
+source /usr/local/bin/virtualenvwrapper.sh
+sudo ln -s /usr/local/Cellar/python/2.7.8_2 /System/Library/Frameworks/Python.framework/Versions/Current
 
-        # function to check homebrew install
-        #brew doctor
-        #brew cask install iterm2
+# Configure $PATH variables for python, virtualenv, sqlite and sublime text
 
-        # function to install homebrew mysql
-        #brew remove mysql
-        #brew cleanup
-        #launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-        #rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-        #sudo rm -rf /usr/local/var/mysql
-        #brew install mysql
+# base path and such
+#export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 
-        # function to link MySql data directory to external HD
-        # if error, kill processes
-        # ps aux | grep mysql
-        # kill -9 <process number>
-        #mysql.server start
-        #mysql -u root -p
-        #SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
-        #mysql.server stop
-        #rm -rf /Volumes/Macintosh\ HD/usr/local/var/mysql
-        #ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
+# sublime text
+#export PATH="/usr/local/bin/subl:$PATH"
 
-        # Getting mysql up and running
-        #mysql.server start
-        #mysql_secure_installation
-        #mysql -u root -p
-        #SHOW DATABASES;
+# sqlite
+#export PATH="/usr/bin/sqlite3:$PATH"
 
-        # install homebrew python
-        #cd /System/Library/Frameworks/Python.framework/Versions
-        #sudo rm Current
-        #ln -s /usr/local/Cellar/python/2.7.2/Frameworks/Python.framework/Versions/Current
-        #brew install python
-        #brew doctor
-        #which python
-        #which pip
-        #pip install distribute
-        #pip install virtualenv
-        #pip install virtualenvwrapper
-        #python --version
-        #source /usr/local/bin/virtualenvwrapper.sh
+# all my shell scripts
+#export PATH="/Volumes/one_tb_hd/_programming/3scripts-dotfiles/shell-scripts:$PATH"
 
-        # install homebrew packages
-        #brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree
-        #brew cask install xquartz
-        #brew tap homebrew/dupes
-        #brew install ack
-        #brew install apple-gcc42
-        #brew install atk
-        #brew install autoconf
-        #brew install automake
-        #brew install bash-completion
-        #brew install bison
-        #brew install cairo
-        #brew install cloog
-        #brew install cloog-ppl015
-        #brew install cmake
-        #brew install coda-cli
-        #brew install curl
-        #brew install doxygen
-        #brew install ec2-api-tools
-        #brew install expat
-        #brew install fftw
-        #brew install fontconfig
-        #brew install freetype
-        #brew install freexl
-        #brew install fswatch
-        #brew install gcc
-        #brew install geos
-        #brew install gettext
-        #brew install gfortran
-        #brew install giflib
-        #brew install gist
-        #brew install git
-        #brew install glib
-        #brew install gmp
-        #brew install gmp4
-        #brew install gobject-introspection
-        #brew install gpp
-        #brew install gsl
-        #brew install gtk+
-        #brew install harfbuzz
-        #brew install heroku-toolbelt
-        #rew install howdoi
-        #rew install icu4c
-        #rew install imagemagick
-        #rew install isl
-        #rew install jasper
-        #brew install jbig2dec
-        #brew install jpeg
-        #brew install json-c
-        #rew install libevent
-        #rew install libffi
-        #brew install libgeotiff
-        #rew install libgpg-error
-        #brew install libksba
-        #brew install liblwgeom
-        #brew install libmpc
-        #brew install libmpc08
-        #brew install libpng
-        #brew install libspatialite
-        #brew install libtiff
-        #brew install libtool
-        #brew install libxml2
-        #brew install libyaml
-        #brew install little-cms2
-        #brew install lzlib
-        #brew install mdbtools
-        #brew install memcached
-        #brew install mongodb
-        #brew install mpfr
-        #brew install mpfr2
-        #brew install mupdf
-        #brew install node
-        #brew install opencv
-        #brew install openjpeg
-        #brew install openssl
-        #brew install ossp-uuid
-        #brew install pango
-        #brew install pcre
-        #brew install phantomjs
-        #brew install pixman
-        #brew install pkg-config
-        #brew install ppl011
-        #brew install proj
-        #brew install psqlodbc
-        #brew install py2cairo
-        #brew install pygobject
-        #brew install pygtk
-        #brew install pyqt
-        #brew install qt
-        #brew install qwt
-        #brew install readline
-        #brew install redis
-        #brew install sip
-        #brew install spark
-        #brew install spatialindex
-        #brew install sqlite
-        #brew install unixodbc
-        #brew install wget
-        #brew install wxmac
-        #brew install xz
-        #brew install yuicompressor
-        #brew install zeromq
+# homebrew path
+#export PATH="/usr/local/bin:$PATH"
 
-        # install other apps
-        #curl -L https://gist.githubusercontent.com/zenorocha/7159780/raw/9b9413ff1306d78be6447f4beddcf90e7e8b2b8a/softwares.sh | sh
-        #brew cask install appcleaner
-        #brew cask install bartender
-        #brew cask install adium
-        #brew cask install cleanmymac
-        #brew cask install calibre
-        #brew cask install audacity
-        #brew cask install ccleaner
-        #brew cask install colorpicker
-        #brew cask install colorpicker-hex
-        #brew cask install cheatsheet
-        #brew cask install firefox
-        #brew cask install dropbox
-        #brew cask install google-drive
-        #brew cask install onepassword
-        #brew cask install ngrok
-        #brew cask install openoffice
-        #brew cask install mou
-        #brew cask install opera
-        #brew cask install pgadmin3
-        #brew cask install media-converter
+# virtualenvwrapper settings
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PIP_VIRTUALENV_BASE=$WORKON_HOME
+#export PIP_RESPECT_VIRTUALENV=true
+#source /usr/local/bin/virtualenvwrapper.sh
 
-        # configure sublime text 3
-        #ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-        #n -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages
-        #n -s /Volumes/one_tb_hd/sublime-text-3/Packages ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+# function to install homebrew mysql
+brew remove mysql
+brew cleanup
+launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+sudo rm -rf /usr/local/var/mysql
+brew install mysql
 
-        #cd ~/Library/Application\ Support/Sublime\ Text\ 3
-        #rm -rf Packages
-        #rm -rf Installed\ Packages
-        #ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
-        #ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+# Getting mysql up and running
+mysql.server start
+mysql_secure_installation
+mysql -u root -p
+#SHOW DATABASES;
+#SET default_storage_engine=MYISAM;
 
-        # move ssh folder
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.ssh /Users/ckeller
+# function to link MySql data directory to external HD if error, kill processes
+    # ps aux | grep mysql
+    # kill -9 <process number>
+mysql -u root -p
+SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
+mysql.server stop
+sudo rm -rf /usr/local/var/mysql
+ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
+mysql.server start
+mysql -u root -p
+SHOW DATABASES;
 
-        # move gitconfig and gitignore files
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitconfig /Users/ckeller
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitignore /Users/ckeller
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.sunlight.key /Users/ckeller
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+# Install Quartz: https://xquartz.macosforge.org
+brew cask install xquartz
 
-        # install qgis
-        #brew install gdal --complete --with-postgresql
-        #brew install qgis-26 --with-grass --with-postgis
+# Install Postgres and PostGIS
+pip install numpy
+brew install postgresql
+initdb /usr/local/var/postgres/ -E utf-8
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+#alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+#alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+pgup
+brew install gdal --complete --with-postgresql
+brew install postgis
+brew install grass
 
-        # move bak plugins
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
-        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.qgis2/python/plugins /Users/ckeller/.qgis2/python/plugins
+# install qgis
+brew tap osgeo/osgeo4mac
+brew install qgis-26 --with-grass --with-postgis
+
+# install homebrew packages
+brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree
+brew tap homebrew/dupes
+brew install ack
+brew install bash-completion
+brew install coda-cli
+brew install curl
+brew install ec2-api-tools
+brew install gist
+brew install git
+brew install heroku-toolbelt
+brew install howdoi
+brew install imagemagick
+brew install mdbtools
+brew install memcached
+brew install mongodb
+brew install node
+brew install phantomjs
+brew install redis
+brew install spark
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#brew install apple-gcc42
+#brew install cloog
+#brew install cloog-ppl015
+#brew install doxygen
+#brew install fswatch
+#brew install gcc
+#brew install geos
+#brew install gettext
+#brew install gfortran
+#brew install giflib
+#brew install gmp4
+#brew install icu4c
+#brew install isl
+#brew install jbig2dec
+#brew install json-c
+#brew install libevent
+#brew install libffi
+#brew install libgpg-error
+#brew install libksba
+#brew install liblwgeom
+#brew install libmpc
+#brew install libmpc08
+#brew install libtool
+#brew install libyaml
+#brew install mpfr2
+#brew install mupdf
+#brew install opencv
+#brew install openssl
+#brew install ossp-uuid
+#brew install pcre
+#brew install pixman
+#brew install ppl011
+#brew install psqlodbc
+#brew install py2cairo
+#brew install pygobject
+#brew install pygtk
+
+
+
+
+
+
+
+
+
+
+
+
+
+# move ssh folder
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.ssh /Users/ckeller
+
+# move gitconfig and gitignore files
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitconfig /Users/ckeller
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitignore /Users/ckeller
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.sunlight.key /Users/ckeller
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+
+
+
+# move bak plugins
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.qgis2/python/plugins /Users/ckeller/.qgis2/python/plugins
+
+# move fonts
+# install virtualenvs
