@@ -682,212 +682,162 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 **Attempt at a bash script**
 
-#!/bin/bash
+        #!/bin/bash
 
-# remove mac apps I don't use
-cd /Applications/
-sudo rm -rf Mail.app/
-sudo rm -rf FaceTime.app/
-sudo rm -rf Stickies.app/
-sudo rm -rf Chess.app/
-sudo rm -rf Photo\ Booth.app
-sudo rm -rf IMovie.app
-sudo rm -rf IPhoto.app
-sudo rm -rf Garage\ Band.app
+        # remove mac apps I don't use
+        cd /Applications/
+        sudo rm -rf Mail.app/
+        sudo rm -rf FaceTime.app/
+        sudo rm -rf Stickies.app/
+        sudo rm -rf Chess.app/
+        sudo rm -rf Photo\ Booth.app
+        sudo rm -rf IMovie.app
+        sudo rm -rf IPhoto.app
+        sudo rm -rf Garage\ Band.app
 
-# Install [Homebrew](http://mxcl.github.com/homebrew/)
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-brew doctor
-brew cleanup
-brew prune
-brew doctor
+        # Install [Homebrew](http://mxcl.github.com/homebrew/)
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew update
+        brew doctor
+        brew cleanup
+        brew prune
+        brew doctor
 
-# Add Homebrew to $PATH
-#export PATH="/usr/local/bin:$PATH"
+        # Add Homebrew to $PATH
+        #export PATH="/usr/local/bin:$PATH"
 
-# Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
-brew update
-brew cleanup
-brew prune
-brew tap phinze/cask
-cd /usr/local/Library/Taps/phinze/homebrew-cask
-git remote set-url origin git@github.com:phinze/homebrew-cask.git
-brew install brew-cask
-brew doctor
-brew cask install iterm2
+        # Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
+        brew update
+        brew cleanup
+        brew prune
+        brew tap phinze/cask
+        cd /usr/local/Library/Taps/phinze/homebrew-cask
+        git remote set-url origin git@github.com:phinze/homebrew-cask.git
+        brew install brew-cask
+        brew doctor
+        brew cask install iterm2
 
-# install sublime text 3
+        # install sublime text 3
 
-# Configure Sublime Text 3 subl and symlink settings and packages to external hard drive
-cd ~/Library/Application\ Support/Sublime\ Text\ 3
-rm -rf Packages
-rm -rf Installed\ Packages
-ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
-ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
-ln -sv "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+        # Configure Sublime Text 3 subl and symlink settings and packages to external hard drive
+        cd ~/Library/Application\ Support/Sublime\ Text\ 3
+        rm -rf Packages
+        rm -rf Installed\ Packages
+        ln -s /Volumes/one_tb_hd/sublime-text-3/Packages
+        ln -s /Volumes/one_tb_hd/sublime-text-3/Installed\ Packages
+        ln -sv "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 
-# function to create move bash profile
-cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bash_profile /Users/ckeller
-cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bashrc_local /Users/ckeller
-cd ~
-ls -a
-source ~/.bash_profile
+        # function to create move bash profile
+        cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bash_profile /Users/ckeller
+        cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.bashrc_local /Users/ckeller
+        cd ~
+        ls -a
+        source ~/.bash_profile
 
-# install homebrew python
-cd /System/Library/Frameworks/Python.framework/Versions
-sudo rm Current
-brew install python
-brew doctor
-which python
-which pip
-pip install --upgrade setuptools
-pip install --upgrade distribute
-pip install virtualenv
-pip install virtualenvwrapper
-python --version
-source /usr/local/bin/virtualenvwrapper.sh
-sudo ln -s /usr/local/Cellar/python/2.7.8_2 /System/Library/Frameworks/Python.framework/Versions/Current
+        # install homebrew python
+        cd /System/Library/Frameworks/Python.framework/Versions
+        sudo rm Current
+        brew install python
+        brew doctor
+        which python
+        which pip
+        pip install --upgrade setuptools
+        pip install --upgrade distribute
+        pip install virtualenv
+        pip install virtualenvwrapper
+        python --version
+        source /usr/local/bin/virtualenvwrapper.sh
+        sudo ln -s /usr/local/Cellar/python/2.7.8_2 /System/Library/Frameworks/Python.framework/Versions/Current
 
-# Configure $PATH variables for python, virtualenv, sqlite and sublime text
+        # Configure $PATH variables for python, virtualenv, sqlite and sublime text
 
-# base path and such
-#export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+        # base path and such
+        #export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 
-# sublime text
-#export PATH="/usr/local/bin/subl:$PATH"
+        # sublime text
+        #export PATH="/usr/local/bin/subl:$PATH"
 
-# sqlite
-#export PATH="/usr/bin/sqlite3:$PATH"
+        # sqlite
+        #export PATH="/usr/bin/sqlite3:$PATH"
 
-# all my shell scripts
-#export PATH="/Volumes/one_tb_hd/_programming/3scripts-dotfiles/shell-scripts:$PATH"
+        # all my shell scripts
+        #export PATH="/Volumes/one_tb_hd/_programming/3scripts-dotfiles/shell-scripts:$PATH"
 
-# homebrew path
-#export PATH="/usr/local/bin:$PATH"
+        # homebrew path
+        #export PATH="/usr/local/bin:$PATH"
 
-# virtualenvwrapper settings
-#export WORKON_HOME=$HOME/.virtualenvs
-#export PIP_VIRTUALENV_BASE=$WORKON_HOME
-#export PIP_RESPECT_VIRTUALENV=true
-#source /usr/local/bin/virtualenvwrapper.sh
+        # virtualenvwrapper settings
+        #export WORKON_HOME=$HOME/.virtualenvs
+        #export PIP_VIRTUALENV_BASE=$WORKON_HOME
+        #export PIP_RESPECT_VIRTUALENV=true
+        #source /usr/local/bin/virtualenvwrapper.sh
 
-# function to install homebrew mysql
-brew remove mysql
-brew cleanup
-launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-sudo rm -rf /usr/local/var/mysql
-brew install mysql
+        # function to install homebrew mysql
+        brew remove mysql
+        brew cleanup
+        launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+        rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+        sudo rm -rf /usr/local/var/mysql
+        brew install mysql
 
-# Getting mysql up and running
-mysql.server start
-mysql_secure_installation
-mysql -u root -p
-#SHOW DATABASES;
-#SET default_storage_engine=MYISAM;
+        # Getting mysql up and running
+        mysql.server start
+        mysql_secure_installation
+        mysql -u root -p
+        #SHOW DATABASES;
+        #SET default_storage_engine=MYISAM;
 
-# function to link MySql data directory to external HD if error, kill processes
-    # ps aux | grep mysql
-    # kill -9 <process number>
-mysql -u root -p
-SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
-mysql.server stop
-sudo rm -rf /usr/local/var/mysql
-ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
-mysql.server start
-mysql -u root -p
-SHOW DATABASES;
+        # function to link MySql data directory to external HD if error, kill processes
+            # ps aux | grep mysql
+            # kill -9 <process number>
+        mysql -u root -p
+        SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
+        mysql.server stop
+        sudo rm -rf /usr/local/var/mysql
+        ln -s /Volumes/one_tb_hd/mysql /Volumes/Macintosh\ HD/usr/local/var/mysql
+        mysql.server start
+        mysql -u root -p
+        SHOW DATABASES;
 
-# Install Quartz: https://xquartz.macosforge.org
-brew cask install xquartz
+        # Install Quartz: https://xquartz.macosforge.org
+        brew cask install xquartz
 
-# Install Postgres and PostGIS
-pip install numpy
-brew install postgresql
-initdb /usr/local/var/postgres/ -E utf-8
-ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-#alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-#alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-pgup
-brew install gdal --complete --with-postgresql
-brew install postgis
-brew install grass
+        # Install Postgres and PostGIS
+        pip install numpy
+        brew install postgresql
+        initdb /usr/local/var/postgres/ -E utf-8
+        ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+        #alias pgdown='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+        #alias pgup='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+        pgup
+        brew install gdal --complete --with-postgresql
+        brew install postgis
+        brew install grass
 
-# install qgis
-brew tap osgeo/osgeo4mac
-brew install qgis-26 --with-grass --with-postgis
+        # install qgis
+        brew tap osgeo/osgeo4mac
+        brew install qgis-26 --with-grass --with-postgis
 
-# install homebrew packages
-brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree
-brew tap homebrew/dupes
-brew install ack
-brew install bash-completion
-brew install coda-cli
-brew install curl
-brew install ec2-api-tools
-brew install gist
-brew install git
-brew install heroku-toolbelt
-brew install howdoi
-brew install imagemagick
-brew install mdbtools
-brew install memcached
-brew install mongodb
-brew install node
-brew install phantomjs
-brew install redis
-brew install spark
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#brew install apple-gcc42
-#brew install cloog
-#brew install cloog-ppl015
-#brew install doxygen
-#brew install fswatch
-#brew install gcc
-#brew install geos
-#brew install gettext
-#brew install gfortran
-#brew install giflib
-#brew install gmp4
-#brew install icu4c
-#brew install isl
-#brew install jbig2dec
-#brew install json-c
-#brew install libevent
-#brew install libffi
-#brew install libgpg-error
-#brew install libksba
-#brew install liblwgeom
-#brew install libmpc
-#brew install libmpc08
-#brew install libtool
-#brew install libyaml
-#brew install mpfr2
-#brew install mupdf
-#brew install opencv
-#brew install openssl
-#brew install ossp-uuid
-#brew install pcre
-#brew install pixman
-#brew install ppl011
-#brew install psqlodbc
-#brew install py2cairo
-#brew install pygobject
-#brew install pygtk
+        # install homebrew packages
+        brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree
+        brew tap homebrew/dupes
+        brew install ack
+        brew install bash-completion
+        brew install coda-cli
+        brew install curl
+        brew install ec2-api-tools
+        brew install gist
+        brew install git
+        brew install heroku-toolbelt
+        brew install howdoi
+        brew install imagemagick
+        brew install mdbtools
+        brew install memcached
+        brew install mongodb
+        brew install node
+        brew install phantomjs
+        brew install redis
+        brew install spark
 
 
 
@@ -901,20 +851,70 @@ brew install spark
 
 
 
-# move ssh folder
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.ssh /Users/ckeller
 
-# move gitconfig and gitignore files
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitconfig /Users/ckeller
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitignore /Users/ckeller
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.sunlight.key /Users/ckeller
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+        #brew install apple-gcc42
+        #brew install cloog
+        #brew install cloog-ppl015
+        #brew install doxygen
+        #brew install fswatch
+        #brew install gcc
+        #brew install geos
+        #brew install gettext
+        #brew install gfortran
+        #brew install giflib
+        #brew install gmp4
+        #brew install icu4c
+        #brew install isl
+        #brew install jbig2dec
+        #brew install json-c
+        #brew install libevent
+        #brew install libffi
+        #brew install libgpg-error
+        #brew install libksba
+        #brew install liblwgeom
+        #brew install libmpc
+        #brew install libmpc08
+        #brew install libtool
+        #brew install libyaml
+        #brew install mpfr2
+        #brew install mupdf
+        #brew install opencv
+        #brew install openssl
+        #brew install ossp-uuid
+        #brew install pcre
+        #brew install pixman
+        #brew install ppl011
+        #brew install psqlodbc
+        #brew install py2cairo
+        #brew install pygobject
+        #brew install pygtk
 
 
 
-# move bak plugins
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
-#cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.qgis2/python/plugins /Users/ckeller/.qgis2/python/plugins
 
-# move fonts
-# install virtualenvs
+
+
+
+
+
+
+
+
+
+        # move ssh folder
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.ssh /Users/ckeller
+
+        # move gitconfig and gitignore files
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitconfig /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.gitignore /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.sunlight.key /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+
+
+
+        # move bak plugins
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.tarbell /Users/ckeller
+        #cp -R /Volumes/one_tb_hd/machine_setup/work_machine_bak/bak_dotfiles/.qgis2/python/plugins /Users/ckeller/.qgis2/python/plugins
+
+        # move fonts
+        # install virtualenvs
