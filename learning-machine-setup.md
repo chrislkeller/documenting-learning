@@ -410,9 +410,9 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 * Using [Homebrew and Cask together](http://computers.tutsplus.com/tutorials/perfect-configurations-with-homebrew-and-cask--cms-20768)
 
-        brew tap phinze/cask
-        cd /usr/local/Library/Taps/phinze/homebrew-cask
-        git remote set-url origin git@github.com:phinze/homebrew-cask.git
+        brew tap caskroom/cask
+        #cd /usr/local/Library/Taps/phinze/homebrew-cask
+        #git remote set-url origin git@github.com:phinze/homebrew-cask.git
         brew install brew-cask
         brew doctor
         brew cask install iterm2
