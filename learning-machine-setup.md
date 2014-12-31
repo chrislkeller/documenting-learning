@@ -542,6 +542,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
                 brew install grass
 
 * install qgis
+
         brew tap osgeo/osgeo4mac
         brew install qgis-26 --with-grass --with-postgis
 
