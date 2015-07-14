@@ -507,6 +507,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
             kill -9 <process number>
 
     * else
+
             mysql -u root -p
             SHOW VARIABLES WHERE Variable_Name LIKE "%dir"; - /usr/local/var/mysql/
             mysql.server stop
