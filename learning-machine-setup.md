@@ -15,14 +15,14 @@ This guide is informed by too many tutorials and Google searches to list. But th
 
 ## Performing clean install
 
-* [Create OS X Yosemite USB Installation Drive](http://www.macworld.com/article/2367748/how-to-make-a-bootable-os-x-10-10-yosemite-install-drive.html)
-    * Download OS X Yosemite from the Mac App Store
+* Create OS X Mojave USB Installation Drive
+    * Download OS X Mojave from the Mac App Store
     * With a USB drive > 8GB, open Disk Utility and select the drive in the sidebar
     * Format the drive as "Mac OS Extended (Journaled)" and name it Untitled
-    * The installer should be called Install OS X Mavericks.app and should be in your Applications folder
+    * The installer should be called Install macOS Mojave.app and should be in your Applications folder
     * [Run the following from the CLI](http://forums.macrumors.com/showpost.php?p=18081307&postcount=3) and "wait about 20 minutes"
 
-            sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction
+            sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ macOS\ Mojave.app --nointeraction
 
     * You should see something like this:
 
