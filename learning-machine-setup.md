@@ -164,6 +164,7 @@ This guide is informed by too many tutorials and Google searches to list. But th
         mysql -u root -p
         SHOW DATABASES;
         SET default_storage_engine=MYISAM;
+        ALTER USER 'yourusername'@'localhost' IDENTIFIED WITH mysql_native_password BY 'youpassword';        
 
 * Link MySql data directory to external HD
     * These links helped with the MySQL install
